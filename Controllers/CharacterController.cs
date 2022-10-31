@@ -17,14 +17,14 @@ namespace dotnet_rpg.Controllers
         //     new Character(),
         //     new Character { Id = 1, Name = "Sam" }
         // };
-        
+
 
         //public ICharacterService CharacterService { get; }
         private readonly ICharacterService _characterService;
         public CharacterController(ICharacterService characterService)
         {
             _characterService = characterService;
-            
+
         }
 
         [HttpGet("GetAll")]
@@ -48,6 +48,16 @@ namespace dotnet_rpg.Controllers
             return Ok(await _characterService.AddCharacter(newCharacter));
         }
 
+        [HttpPut]
+        public async Task<ActionResult<ServiceResponse<GetCharacterDto>>> UpdateCharacter(UpdateCharacterDto updatedCharacter)
+        {
+            var response = await _characterService.UpdateCharacter(updatedCharacter);
+            if (response.Data == null)
+            {
+                return NotFound(response);
+            }
+            return Ok(response);
+        }
 
     }
 }
