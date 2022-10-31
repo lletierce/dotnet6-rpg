@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 
 namespace dotnet_rpg.Services.CharacterService
 {
+    // Ceci est un test
     public interface ICharacterService
     {
         // Task<List<Character>> GetAllCharacters(); => Avant l'ajout du ServiceResponse
